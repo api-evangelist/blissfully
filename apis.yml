@@ -1,0 +1,38 @@
+aid: blissfully
+name: Blissfully
+description: >-
+  Blissfully (now part of Vendr) was a SaaS management platform providing
+  SaaS discovery, spend optimization, and workflow automation for IT and
+  finance teams. It helped organizations gain visibility into their SaaS
+  portfolio and manage renewals.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - SaaS Management
+  - SaaS Discovery
+  - Spend Optimization
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/blissfully/refs/heads/main/apis.yml
+created: '2026-03-27'
+modified: '2026-03-27'
+specificationVersion: '0.19'
+apis:
+  - aid: blissfully:blissfully
+    name: Blissfully
+    description: >-
+      Blissfully (now part of Vendr) was a SaaS management platform providing
+      SaaS discovery, spend optimization, and workflow automation for IT and
+      finance teams.
+    humanURL: https://www.vendr.com
+    tags:
+      - SaaS Management
+      - SaaS Discovery
+    properties:
+      - type: Documentation
+        url: https://www.vendr.com
+common:
+  - type: Website
+    url: https://www.vendr.com
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
