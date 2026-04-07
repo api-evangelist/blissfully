@@ -8,8 +8,8 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - SaaS Management
   - SaaS Discovery
+  - SaaS Management
   - Spend Optimization
 url: >-
   https://raw.githubusercontent.com/api-evangelist/blissfully/refs/heads/main/apis.yml
@@ -25,8 +25,8 @@ apis:
       finance teams.
     humanURL: https://www.vendr.com
     tags:
-      - SaaS Management
       - SaaS Discovery
+      - SaaS Management
     properties:
       - type: Documentation
         url: https://www.vendr.com
