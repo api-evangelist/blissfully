@@ -1,0 +1,9 @@
+{
+  "id": "webhook-500123",
+  "url": "https://procurement.example.com/vendr-webhook",
+  "events": [
+    "pricing.updated",
+    "catalog.updated"
+  ],
+  "active": true
+}

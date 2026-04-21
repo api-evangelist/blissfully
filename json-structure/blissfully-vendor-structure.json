@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/blissfully/refs/heads/main/json-structure/blissfully-vendor-structure.json",
+  "name": "Vendor",
+  "description": "A software vendor in the Vendr catalog",
+  "required": [
+    "id",
+    "name"
+  ],
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Unique vendor identifier",
+      "type": "string",
+      "example": "vendor-salesforce"
+    },
+    "name": {
+      "description": "Vendor name",
+      "type": "string",
+      "example": "Salesforce"
+    },
+    "website": {
+      "description": "Vendor website URL",
+      "type": "uri",
+      "example": "https://www.salesforce.com"
+    },
+    "category": {
+      "description": "Primary product category",
+      "type": "string",
+      "example": "CRM"
+    }
+  }
+}

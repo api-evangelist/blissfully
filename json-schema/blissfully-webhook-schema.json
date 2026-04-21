@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/blissfully/refs/heads/main/json-schema/blissfully-webhook-schema.json",
+  "title": "Webhook",
+  "description": "A configured webhook for Vendr event notifications",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique webhook identifier",
+      "example": "webhook-500123"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Webhook endpoint URL",
+      "example": "https://example.com/webhook"
+    },
+    "events": {
+      "type": "array",
+      "description": "Subscribed event types",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "pricing.updated"
+      ]
+    },
+    "active": {
+      "type": "boolean",
+      "description": "Whether the webhook is active",
+      "example": true
+    }
+  },
+  "required": [
+    "id",
+    "url",
+    "events"
+  ]
+}

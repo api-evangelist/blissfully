@@ -1,0 +1,232 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: Vendr Catalog API
+  description: Software product catalog, vendor data, pricing intelligence, and webhook management for SaaS procurement automation.
+  tags:
+    - Procurement
+    - SaaS Management
+    - Software Catalog
+    - Vendor Management
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      VENDR_API_KEY: VENDR_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: vendr
+      baseUri: https://api.vendr.com/v1
+      description: Vendr SaaS catalog and pricing API
+      authentication:
+        type: apikey
+        key: X-API-Key
+        value: "{{VENDR_API_KEY}}"
+        placement: header
+      resources:
+        - name: products
+          path: /products
+          description: Software product catalog
+          operations:
+            - name: list-products
+              method: GET
+              description: List software products in the Vendr catalog
+              inputParameters:
+                - name: category
+                  in: query
+                  type: string
+                  required: false
+                  description: Filter by product category
+                - name: vendor_id
+                  in: query
+                  type: string
+                  required: false
+                  description: Filter by vendor
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: Maximum results per page
+                - name: offset
+                  in: query
+                  type: integer
+                  required: false
+                  description: Pagination offset
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-product
+              method: GET
+              description: Get detailed product catalog attributes
+              inputParameters:
+                - name: product_id
+                  in: path
+                  type: string
+                  required: true
+                  description: Product identifier
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: vendors
+          path: /vendors
+          description: Software vendor catalog
+          operations:
+            - name: list-vendors
+              method: GET
+              description: List software vendors in the Vendr catalog
+              inputParameters:
+                - name: category
+                  in: query
+                  type: string
+                  required: false
+                  description: Filter by category
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: pricing
+          path: /pricing
+          description: Pricing intelligence
+          operations:
+            - name: get-pricing-insights
+              method: POST
+              description: Get fair price predictions and negotiation guidance
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  product_id: "{{tools.product_id}}"
+                  seats: "{{tools.seats}}"
+                  contract_length_months: "{{tools.contract_length_months}}"
+                  company_size: "{{tools.company_size}}"
+
+        - name: webhooks
+          path: /webhooks
+          description: Webhook management
+          operations:
+            - name: list-webhooks
+              method: GET
+              description: List configured webhooks
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-webhook
+              method: POST
+              description: Create a new webhook subscription
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  url: "{{tools.url}}"
+                  events: "{{tools.events}}"
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: vendr-rest
+      resources:
+        - path: /v1/products
+          name: products
+          operations:
+            - method: GET
+              name: list-products
+              description: List software products
+              call: "vendr.list-products"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/pricing
+          name: pricing
+          operations:
+            - method: POST
+              name: get-pricing-insights
+              description: Get pricing insights
+              call: "vendr.get-pricing-insights"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: vendr-mcp
+      transport: http
+      tools:
+        - name: list-products
+          description: List software products in the Vendr catalog with features and add-ons
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "vendr.list-products"
+          with:
+            category: "tools.category"
+            vendor_id: "tools.vendor_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-product
+          description: Get detailed catalog attributes for a specific software product
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "vendr.get-product"
+          with:
+            product_id: "tools.product_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-vendors
+          description: List software vendors in the Vendr catalog
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "vendr.list-vendors"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-pricing-insights
+          description: Get fair price predictions and negotiation guidance for a software product
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "vendr.get-pricing-insights"
+          with:
+            product_id: "tools.product_id"
+            seats: "tools.seats"
+            contract_length_months: "tools.contract_length_months"
+            company_size: "tools.company_size"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-webhook
+          description: Create a webhook to receive Vendr pricing and catalog update events
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "vendr.create-webhook"
+          with:
+            url: "tools.url"
+            events: "tools.events"
+          outputParameters:
+            - type: object
+              mapping: "$."

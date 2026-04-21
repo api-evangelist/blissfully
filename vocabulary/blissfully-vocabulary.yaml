@@ -1,0 +1,193 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: Blissfully (Vendr)
+  description: Unified taxonomy for the Vendr/Blissfully SaaS procurement platform APIs covering catalog, pricing, vendor management, and webhook capabilities.
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - namespace: vendr
+      version: "1.0"
+      baseUrl: https://api.vendr.com/v1
+      status: active
+      description: Vendr SaaS catalog and pricing intelligence API
+
+  resources:
+    - name: products
+      description: Software product catalog entries with attributes, features, and pricing
+      api: vendr
+      actions: [list, get]
+    - name: vendors
+      description: Software vendors and their product portfolios
+      api: vendr
+      actions: [list]
+    - name: pricing
+      description: Pricing benchmarks and negotiation guidance
+      api: vendr
+      actions: [get-insights]
+    - name: webhooks
+      description: Event webhook subscriptions
+      api: vendr
+      actions: [list, create]
+
+  actions:
+    - name: list
+      description: Retrieve a paginated list of resources
+      httpMethod: GET
+      pattern: read
+    - name: get
+      description: Retrieve a single resource by identifier
+      httpMethod: GET
+      pattern: read
+    - name: get-insights
+      description: Request pricing intelligence for a product
+      httpMethod: POST
+      pattern: query
+    - name: create
+      description: Create a new resource
+      httpMethod: POST
+      pattern: write
+
+  schemas:
+    core:
+      - name: Product
+        description: Software product with catalog attributes, features, and add-ons
+        key_properties: [id, name, vendor_id, category, features, add_ons]
+      - name: Vendor
+        description: Software vendor in the Vendr catalog
+        key_properties: [id, name, website, category]
+      - name: PricingResponse
+        description: Fair price prediction and negotiation guidance
+        key_properties: [product_id, fair_price_per_seat, currency, confidence, negotiation_guidance]
+      - name: Webhook
+        description: Event webhook subscription
+        key_properties: [id, url, events, active]
+
+  parameters:
+    pagination:
+      - name: limit
+        type: integer
+        description: Maximum results per page
+      - name: offset
+        type: integer
+        description: Pagination offset
+    filters:
+      - name: category
+        type: string
+        description: Product or vendor category filter
+      - name: vendor_id
+        type: string
+        description: Filter products by vendor
+      - name: product_id
+        type: string
+        description: Product identifier for pricing
+      - name: seats
+        type: integer
+        description: Number of seats for pricing
+      - name: contract_length_months
+        type: integer
+        description: Contract length for pricing
+      - name: company_size
+        type: string
+        description: Buyer company size segment
+
+  enums:
+    companySizes:
+      - value: startup
+        description: Early-stage company under 50 employees
+      - value: smb
+        description: Small to medium business 50-500 employees
+      - value: mid-market
+        description: Mid-market company 500-5000 employees
+      - value: enterprise
+        description: Enterprise company over 5000 employees
+    confidenceLevels:
+      - value: high
+        description: High confidence pricing prediction
+      - value: medium
+        description: Medium confidence pricing prediction
+      - value: low
+        description: Low confidence pricing prediction
+
+  authentication:
+    schemes:
+      - type: apikey
+        description: API key in X-API-Key header
+        rateLimits:
+          - 250 requests per minute
+          - 150,000 requests per day
+        apis: [vendr]
+
+capability:
+  workflows:
+    - name: Blissfully SaaS Procurement
+      file: capabilities/blissfully-saas-procurement.yaml
+      description: SaaS catalog browsing, pricing benchmarks, and negotiation guidance
+      apis: [Vendr Catalog API, Vendr Pricing API]
+      tools: 5
+      personas: [Procurement Manager, IT Manager, Finance Analyst, AI Assistant]
+      domains: [Procurement, SaaS Management]
+
+  personas:
+    - id: procurement-manager
+      name: Procurement Manager
+      description: Researches software options, benchmarks pricing, and negotiates with vendors
+      workflows: [Blissfully SaaS Procurement]
+    - id: it-manager
+      name: IT Manager
+      description: Evaluates software capabilities and manages the SaaS portfolio
+      workflows: [Blissfully SaaS Procurement]
+    - id: finance-analyst
+      name: Finance Analyst
+      description: Analyzes SaaS spend, benchmarks costs, and identifies savings opportunities
+      workflows: [Blissfully SaaS Procurement]
+    - id: ai-assistant
+      name: AI Assistant
+      description: Provides AI-assisted procurement recommendations via MCP integration
+      workflows: [Blissfully SaaS Procurement]
+
+  domains:
+    - name: Procurement
+      description: Software purchasing, negotiation, and vendor management
+      resources: [products, vendors, pricing]
+      workflows: [Blissfully SaaS Procurement]
+    - name: SaaS Management
+      description: Portfolio visibility, spend optimization, and renewal management
+      resources: [webhooks]
+      workflows: [Blissfully SaaS Procurement]
+
+  namespaces:
+    - name: vendr
+      type: consumed
+      baseUri: https://api.vendr.com/v1
+    - name: blissfully-saas-procurement-api
+      type: rest-exposed
+      port: 8080
+    - name: blissfully-saas-procurement-mcp
+      type: mcp-exposed
+      port: 9090
+
+  binds:
+    - name: VENDR_API_KEY
+      description: Vendr API key for authentication
+      workflows: [Blissfully SaaS Procurement]
+
+crossReference:
+  - resource: products
+    operations: [list, get]
+    workflows: [Blissfully SaaS Procurement]
+    personas: [Procurement Manager, IT Manager, Finance Analyst, AI Assistant]
+  - resource: vendors
+    operations: [list]
+    workflows: [Blissfully SaaS Procurement]
+    personas: [Procurement Manager, IT Manager]
+  - resource: pricing
+    operations: [get-insights]
+    workflows: [Blissfully SaaS Procurement]
+    personas: [Procurement Manager, Finance Analyst, AI Assistant]
+  - resource: webhooks
+    operations: [list, create]
+    workflows: [Blissfully SaaS Procurement]
+    personas: [Procurement Manager, IT Manager]

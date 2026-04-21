@@ -1,0 +1,241 @@
+# Vendr/Blissfully API Spectral Ruleset
+# Enforces conventions observed in the Vendr Catalog API OpenAPI specification.
+
+rules:
+
+  # INFO / METADATA
+  info-title-prefix:
+    description: API title must start with "Vendr"
+    severity: warn
+    given: '$.info.title'
+    then:
+      function: pattern
+      functionOptions:
+        match: '^Vendr'
+
+  info-description-required:
+    description: Info object must have a description
+    severity: error
+    given: '$.info'
+    then:
+      field: description
+      function: truthy
+
+  info-version-required:
+    description: Info object must have a version
+    severity: error
+    given: '$.info'
+    then:
+      field: version
+      function: truthy
+
+  # OPENAPI VERSION
+  openapi-version:
+    description: Must use OpenAPI 3.x
+    severity: error
+    given: '$'
+    then:
+      field: openapi
+      function: pattern
+      functionOptions:
+        match: '^3\.'
+
+  # SERVERS
+  servers-defined:
+    description: At least one server must be defined
+    severity: error
+    given: '$'
+    then:
+      field: servers
+      function: truthy
+
+  servers-https:
+    description: Server URLs must use HTTPS
+    severity: error
+    given: '$.servers[*].url'
+    then:
+      function: pattern
+      functionOptions:
+        match: '^https://'
+
+  # PATHS — NAMING CONVENTIONS
+  paths-kebab-case:
+    description: Path segments must use kebab-case
+    severity: warn
+    given: '$.paths[*]~'
+    then:
+      function: pattern
+      functionOptions:
+        match: '^(/[a-z0-9-]+|\{[a-z_]+\})+$'
+
+  # OPERATIONS
+  operation-summary-required:
+    description: Every operation must have a summary
+    severity: error
+    given: '$.paths[*][get,post,put,patch,delete]'
+    then:
+      field: summary
+      function: truthy
+
+  operation-summary-prefix:
+    description: Operation summaries must start with "Vendr"
+    severity: warn
+    given: '$.paths[*][get,post,put,patch,delete].summary'
+    then:
+      function: pattern
+      functionOptions:
+        match: '^Vendr'
+
+  operation-description-required:
+    description: Every operation must have a description
+    severity: warn
+    given: '$.paths[*][get,post,put,patch,delete]'
+    then:
+      field: description
+      function: truthy
+
+  operation-id-required:
+    description: Every operation must have an operationId
+    severity: error
+    given: '$.paths[*][get,post,put,patch,delete]'
+    then:
+      field: operationId
+      function: truthy
+
+  operation-id-camel-case:
+    description: operationId must use camelCase
+    severity: warn
+    given: '$.paths[*][get,post,put,patch,delete].operationId'
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-zA-Z0-9]+$'
+
+  operation-tags-required:
+    description: Every operation must have at least one tag
+    severity: warn
+    given: '$.paths[*][get,post,put,patch,delete]'
+    then:
+      field: tags
+      function: truthy
+
+  # PARAMETERS
+  parameter-description-required:
+    description: Every parameter must have a description
+    severity: warn
+    given: '$.paths[*][get,post,put,patch,delete].parameters[*]'
+    then:
+      field: description
+      function: truthy
+
+  parameter-pagination-snake-case:
+    description: Pagination parameter names should use snake_case
+    severity: info
+    given: '$.paths[*][get].parameters[*].name'
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-z0-9_]*$'
+
+  # REQUEST BODIES
+  request-body-json:
+    description: Request bodies must support application/json
+    severity: warn
+    given: '$.paths[*][post,put,patch].requestBody.content'
+    then:
+      field: application/json
+      function: truthy
+
+  # RESPONSES
+  response-success-required:
+    description: Every operation must define a 2xx response
+    severity: error
+    given: '$.paths[*][get,post,put,patch,delete]'
+    then:
+      field: responses
+      function: truthy
+
+  response-401-defined:
+    description: Operations should define a 401 response
+    severity: warn
+    given: '$.paths[*][get,post,put,patch,delete].responses'
+    then:
+      field: '401'
+      function: truthy
+
+  response-429-rate-limit:
+    description: Operations should define a 429 rate limit response
+    severity: info
+    given: '$.paths[*][get,post].responses'
+    then:
+      field: '429'
+      function: truthy
+
+  response-description-required:
+    description: Every response must have a description
+    severity: error
+    given: '$.paths[*][get,post,put,patch,delete].responses[*]'
+    then:
+      field: description
+      function: truthy
+
+  # SCHEMAS
+  schema-property-snake-case:
+    description: Schema property names must use snake_case
+    severity: warn
+    given: '$.components.schemas[*].properties[*]~'
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-z0-9_]*$'
+
+  schema-description-required:
+    description: Top-level schemas must have a description
+    severity: warn
+    given: '$.components.schemas[*]'
+    then:
+      field: description
+      function: truthy
+
+  # SECURITY
+  security-schemes-defined:
+    description: At least one security scheme must be defined
+    severity: error
+    given: '$.components'
+    then:
+      field: securitySchemes
+      function: truthy
+
+  security-global-defined:
+    description: Global security must be defined
+    severity: warn
+    given: '$'
+    then:
+      field: security
+      function: truthy
+
+  # HTTP METHOD CONVENTIONS
+  get-no-request-body:
+    description: GET operations must not have a request body
+    severity: error
+    given: '$.paths[*].get'
+    then:
+      field: requestBody
+      function: falsy
+
+  post-has-request-body:
+    description: POST operations should have a request body
+    severity: warn
+    given: '$.paths[*].post'
+    then:
+      field: requestBody
+      function: truthy
+
+  # PAGINATION
+  list-operations-pagination:
+    description: List operations should support limit and offset pagination
+    severity: info
+    given: '$.paths[*].get'
+    then:
+      field: parameters
+      function: truthy

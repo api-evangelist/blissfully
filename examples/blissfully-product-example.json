@@ -1,0 +1,18 @@
+{
+  "id": "product-500123",
+  "name": "Salesforce Sales Cloud",
+  "vendor_id": "vendor-salesforce",
+  "category": "CRM",
+  "description": "Customer relationship management platform for enterprise sales teams",
+  "features": [
+    "Contact Management",
+    "Pipeline Management",
+    "Reporting and Analytics",
+    "Email Integration"
+  ],
+  "add_ons": [
+    "Salesforce CPQ",
+    "Marketing Cloud Connector",
+    "Revenue Intelligence"
+  ]
+}

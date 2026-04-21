@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/blissfully/refs/heads/main/json-schema/blissfully-pricing-response-schema.json",
+  "title": "PricingResponse",
+  "description": "Pricing insights and negotiation guidance for a software product",
+  "type": "object",
+  "properties": {
+    "product_id": {
+      "type": "string",
+      "description": "Product identifier",
+      "example": "product-500123"
+    },
+    "fair_price_per_seat": {
+      "type": "number",
+      "description": "Fair market price per seat",
+      "example": 150
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code",
+      "example": "USD"
+    },
+    "confidence": {
+      "type": "string",
+      "description": "Confidence level",
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ],
+      "example": "high"
+    },
+    "negotiation_guidance": {
+      "type": "string",
+      "description": "Negotiation tips",
+      "example": "Consider asking for a 15-20% discount."
+    }
+  },
+  "required": [
+    "product_id",
+    "fair_price_per_seat",
+    "currency"
+  ]
+}

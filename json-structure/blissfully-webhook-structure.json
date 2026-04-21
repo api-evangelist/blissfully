@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/blissfully/refs/heads/main/json-structure/blissfully-webhook-structure.json",
+  "name": "Webhook",
+  "description": "A configured webhook for Vendr event notifications",
+  "required": [
+    "id",
+    "url",
+    "events"
+  ],
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Unique webhook identifier",
+      "type": "string",
+      "example": "webhook-500123"
+    },
+    "url": {
+      "description": "Webhook endpoint URL",
+      "type": "uri",
+      "example": "https://example.com/webhook"
+    },
+    "events": {
+      "description": "Subscribed event types",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "pricing.updated"
+      ]
+    },
+    "active": {
+      "description": "Whether the webhook is active",
+      "type": "boolean",
+      "example": true
+    }
+  }
+}

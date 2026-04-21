@@ -1,0 +1,29 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "vendr": "https://api.vendr.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Product": "vendr:Product",
+    "Vendor": "vendr:Vendor",
+    "PricingResponse": "vendr:PricingResponse",
+    "Webhook": "vendr:Webhook",
+    "id": {"@id": "dcterms:identifier", "@type": "xsd:string"},
+    "name": "schema:name",
+    "description": "schema:description",
+    "website": {"@id": "schema:url", "@type": "@id"},
+    "url": {"@id": "schema:url", "@type": "@id"},
+    "category": {"@id": "vendr:category", "@type": "xsd:string"},
+    "vendor_id": {"@id": "vendr:vendor_id", "@type": "xsd:string"},
+    "product_id": {"@id": "vendr:product_id", "@type": "xsd:string"},
+    "features": {"@id": "vendr:features", "@container": "@set", "@type": "xsd:string"},
+    "add_ons": {"@id": "vendr:add_ons", "@container": "@set", "@type": "xsd:string"},
+    "events": {"@id": "vendr:events", "@container": "@set", "@type": "xsd:string"},
+    "fair_price_per_seat": {"@id": "vendr:fair_price_per_seat", "@type": "xsd:decimal"},
+    "currency": {"@id": "vendr:currency", "@type": "xsd:string"},
+    "confidence": {"@id": "vendr:confidence", "@type": "xsd:string"},
+    "negotiation_guidance": {"@id": "vendr:negotiation_guidance", "@type": "xsd:string"},
+    "active": {"@id": "vendr:active", "@type": "xsd:boolean"}
+  }
+}

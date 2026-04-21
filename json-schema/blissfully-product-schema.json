@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/blissfully/refs/heads/main/json-schema/blissfully-product-schema.json",
+  "title": "Product",
+  "description": "A software product in the Vendr catalog with structured attributes, features, and add-ons",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique product identifier",
+      "example": "product-500123"
+    },
+    "name": {
+      "type": "string",
+      "description": "Product name",
+      "example": "Salesforce Sales Cloud"
+    },
+    "vendor_id": {
+      "type": "string",
+      "description": "Associated vendor identifier",
+      "example": "vendor-salesforce"
+    },
+    "category": {
+      "type": "string",
+      "description": "Product category",
+      "example": "CRM"
+    },
+    "description": {
+      "type": "string",
+      "description": "Product description"
+    },
+    "features": {
+      "type": "array",
+      "description": "List of product features",
+      "items": {
+        "type": "string"
+      }
+    },
+    "add_ons": {
+      "type": "array",
+      "description": "Available product add-ons",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "vendor_id",
+    "category"
+  ]
+}

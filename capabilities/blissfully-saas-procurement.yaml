@@ -1,0 +1,147 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: Blissfully SaaS Procurement
+  description: >-
+    Workflow capability for SaaS procurement intelligence using Vendr's Catalog and Pricing APIs.
+    Enables procurement teams, finance, and IT to search software catalogs, benchmark pricing,
+    get negotiation guidance, and automate renewal monitoring. Formerly Blissfully, now Vendr.
+  tags:
+    - AI Procurement
+    - Pricing Intelligence
+    - Procurement
+    - SaaS Management
+    - Software Catalog
+    - Vendor Management
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      VENDR_API_KEY: VENDR_API_KEY
+
+capability:
+  consumes:
+    - import: vendr
+      location: ./shared/vendr-catalog-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: blissfully-saas-procurement-api
+      description: Unified REST API for SaaS procurement intelligence powered by Vendr data.
+      resources:
+        - path: /v1/products
+          name: products
+          description: Software product catalog search and browsing
+          operations:
+            - method: GET
+              name: list-products
+              description: Search and browse software products in the Vendr catalog
+              call: "vendr.list-products"
+              with:
+                category: "rest.category"
+                vendor_id: "rest.vendor_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/vendors
+          name: vendors
+          description: Software vendor catalog
+          operations:
+            - method: GET
+              name: list-vendors
+              description: List software vendors
+              call: "vendr.list-vendors"
+              with:
+                category: "rest.category"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/pricing
+          name: pricing
+          description: Pricing intelligence and negotiation guidance
+          operations:
+            - method: POST
+              name: get-pricing-insights
+              description: Get fair price benchmarks and negotiation guidance
+              call: "vendr.get-pricing-insights"
+              with:
+                product_id: "rest.product_id"
+                seats: "rest.seats"
+                contract_length_months: "rest.contract_length_months"
+                company_size: "rest.company_size"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: blissfully-saas-procurement-mcp
+      transport: http
+      description: MCP server for AI-assisted SaaS procurement powered by Vendr catalog and pricing data.
+      tools:
+        - name: list-products
+          description: Search and browse software products in the Vendr catalog. Returns structured attributes, features, and available add-ons.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "vendr.list-products"
+          with:
+            category: "tools.category"
+            vendor_id: "tools.vendor_id"
+            limit: "tools.limit"
+            offset: "tools.offset"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-product
+          description: Get detailed catalog attributes, features, and add-ons for a specific software product.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "vendr.get-product"
+          with:
+            product_id: "tools.product_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-vendors
+          description: List software vendors in the Vendr catalog with their product portfolios and category information.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "vendr.list-vendors"
+          with:
+            category: "tools.category"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-pricing-insights
+          description: Get fair price predictions and negotiation guidance for a software product. Powered by Vendr's database of real software purchases.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "vendr.get-pricing-insights"
+          with:
+            product_id: "tools.product_id"
+            seats: "tools.seats"
+            contract_length_months: "tools.contract_length_months"
+            company_size: "tools.company_size"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-webhook
+          description: Create a webhook to receive notifications when Vendr pricing or catalog data is updated.
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "vendr.create-webhook"
+          with:
+            url: "tools.url"
+            events: "tools.events"
+            secret: "tools.secret"
+          outputParameters:
+            - type: object
+              mapping: "$."
