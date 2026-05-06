@@ -4,102 +4,36 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Blissfully
 providerId: blissfully
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
-  - Procurement
-  - SaaS Discovery
-  - SaaS Management
-  - Software Procurement
-  - Spend Optimization
-  - Vendor Management
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Blissfully API surface. Captures per-tier
-  quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to
-  be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+  - SaaS Management
+  - Procurement
+description: Blissfully was acquired by Vendr; legacy Blissfully API rate limit documentation is no
+  longer published. Vendr does not publish numeric API rate limits on its public marketing surface;
+  consumers should refer to the customer help center after onboarding for the active throttling
+  policy. This artifact is a placeholder pending verified provider documentation.
+sources:
+  - https://www.vendr.com/pricing
+notes: Verify rate limits with Vendr customer support; original Blissfully developer portal has
+  been retired.
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Vendr Catalog API
-      - Vendr Pricing API
-      - Vendr Scope API
-      - Vendr Webhooks API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Vendr Catalog API
-      - Vendr Pricing API
-      - Vendr Scope API
-      - Vendr Webhooks API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Vendr Catalog API
-      - Vendr Pricing API
-      - Vendr Scope API
-      - Vendr Webhooks API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Vendr Catalog API
-      - Vendr Pricing API
-      - Vendr Scope API
-      - Vendr Webhooks API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Vendr Catalog API
-      - Vendr Pricing API
-      - Vendr Scope API
-      - Vendr Webhooks API
+  - name: Vendr platform API
+    scope: account
+    metric: varies
+    limit: see Vendr customer documentation
+    notes: Public marketing site does not document REST rate limits; Vendr support provides the
+      active throttling values to onboarded customers.
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Backoff
+    description: Clients receiving a 429 response should respect any Retry-After header and apply
+      exponential backoff with jitter.
+  - name: Customer support escalation
+    description: Throttling concerns and quota raises are handled through the Vendr account team
+      rather than self-service.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

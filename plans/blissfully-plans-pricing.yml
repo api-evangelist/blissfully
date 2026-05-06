@@ -4,7 +4,8 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Blissfully
 providerId: blissfully
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
   - Procurement
   - SaaS Discovery
@@ -12,140 +13,110 @@ tags:
   - Software Procurement
   - Spend Optimization
   - Vendor Management
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+description: Blissfully was acquired by Vendr; the SaaS-management product line now ships under Vendr
+  branding and pricing. Vendr publishes a single Platform-Access subscription plus a credit-based
+  negotiation engine (Advisory or Autonomous mode) where credit consumption scales with the dollar
+  value of vendor deals being negotiated. A free exploration tier lets prospects browse benchmarks
+  and upload contracts before committing.
+sources:
+  - https://www.vendr.com/pricing
+notes: Original blissfully.com pricing page now redirects to vendr.com/pricing. Reconciled values
+  are taken from the Vendr platform; legacy Blissfully tier names have been retired.
 plans:
   - id: blissfully-free
-    name: Free
+    name: Free Exploration
     type: freemium
-    description: Free entry tier for the Blissfully API surface. Intended for evaluation, prototyping,
-      and low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
+    description: No-cost access to browse Vendr's pricing benchmarks, upload contracts, and preview
+      the negotiation workflow before purchasing the platform.
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
+      - label: Pricing benchmark browsing
+        name: benchmark_access
+        type: flat
+        metric: month
+        limit: -1
         timeFrame: month
         geo: global
-        domains: []
         unit: 1
         price: '0.00'
         userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
+      - label: Contract upload
+        name: contract_upload
+        type: flat
+        metric: month
+        limit: -1
+        timeFrame: month
         geo: global
-        domains: []
         unit: 1
         price: '0.00'
         userMultiplied: false
     elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Vendr Catalog API
-      - name: Vendr Pricing API
-      - name: Vendr Scope API
-      - name: Vendr Webhooks API
-  - id: blissfully-pro
-    name: Professional
-    type: paid
-    description: Production tier for Blissfully. Provides higher quotas, priority support, and access
-      to the broader API portfolio. Pricing placeholder; align with the provider's pricing page.
+      - name: 2,500+ product pricing benchmarks
+      - name: Contract intake / preview
+      - name: Self-serve onboarding
+  - id: blissfully-platform
+    name: Vendr Platform Access
+    type: subscription
+    description: Annual subscription that unlocks the SaaS-management workspace plus 100 included
+      negotiation credits. Add-on credits are purchased as needed depending on advisory vs. autonomous
+      negotiation mode and total deal volume.
     entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
+      - label: Platform access (annual)
+        name: platform_annual
+        type: subscription
+        metric: year
+        limit: 1
+        timeFrame: year
         geo: global
-        domains: []
         unit: 1
-        price: TBD
+        price: $12,000 / year
         userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
+      - label: Included negotiation credits
+        name: included_credits
+        type: quota
+        metric: credit
         limit: 100
-        timeFrame: minute
+        timeFrame: year
         geo: global
-        domains: []
         unit: 1
-        price: '0.00'
+        price: included
         userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
+      - label: Negotiation - Advisory mode
+        name: credits_advisory
         type: metered
-        metric: requests
+        metric: credit
         limit: -1
-        timeFrame: month
+        timeFrame: usage
         geo: global
-        domains: []
-        unit: 1000
-        price: TBD
+        unit: 1
+        price: ~600 credits per $1M deal value
         userMultiplied: false
-    elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Vendr Catalog API
-      - name: Vendr Pricing API
-      - name: Vendr Scope API
-      - name: Vendr Webhooks API
-  - id: blissfully-enterprise
-    name: Enterprise
-    type: enterprise
-    description: Custom-negotiated tier for Blissfully. Includes dedicated capacity, contractual SLAs,
-      security review, data residency options, and named technical account management.
-    entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
+      - label: Negotiation - Autonomous mode
+        name: credits_autonomous
+        type: metered
+        metric: credit
         limit: -1
-        timeFrame: month
-        geo: configurable
-        domains: []
+        timeFrame: usage
+        geo: global
         unit: 1
-        price: custom
+        price: ~1000 credits per $1M deal value
         userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains: []
+      - label: Volume-discounted credit rate (>= $10M deals)
+        name: credits_volume
+        type: tiered
+        metric: credit
+        limit: -1
+        timeFrame: usage
+        geo: global
         unit: 1
-        price: custom
+        price: scales from ~2.0% to ~1.2% of deal value
         userMultiplied: false
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Vendr Catalog API
-      - name: Vendr Pricing API
-      - name: Vendr Scope API
-      - name: Vendr Webhooks API
+      - name: SaaS discovery and inventory
+      - name: Real-time pricing benchmarks
+      - name: Contract repository
+      - name: SSO and organization management
+      - name: Negotiation credit ledger
+      - name: Advisory and Autonomous negotiation modes
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
