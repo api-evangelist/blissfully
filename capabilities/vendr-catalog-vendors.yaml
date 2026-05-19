@@ -1,0 +1,93 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Vendr Catalog API — Vendors
+  description: 'Vendr Catalog API — Vendors. 1 operations. Lead operation: Vendr List Software Vendors. Self-contained Naftiko
+    capability covering one Blissfully business surface.'
+  tags:
+  - Blissfully
+  - Vendors
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BLISSFULLY_API_KEY: BLISSFULLY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: vendr-catalog-vendors
+    baseUri: https://api.vendr.com/v1
+    description: Vendr Catalog API — Vendors business capability. Self-contained, no shared references.
+    resources:
+    - name: vendors
+      path: /vendors
+      operations:
+      - name: listvendors
+        method: GET
+        description: Vendr List Software Vendors
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: category
+          in: query
+          type: string
+          description: Filter vendors by category
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of results
+        - name: offset
+          in: query
+          type: integer
+          description: Offset for pagination
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.BLISSFULLY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: vendr-catalog-vendors-rest
+    port: 8080
+    description: REST adapter for Vendr Catalog API — Vendors. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/vendors
+      name: vendors
+      description: REST surface for vendors.
+      operations:
+      - method: GET
+        name: listvendors
+        description: Vendr List Software Vendors
+        call: vendr-catalog-vendors.listvendors
+        with:
+          category: rest.category
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: vendr-catalog-vendors-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Vendr Catalog API — Vendors. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: vendr-list-software-vendors
+      description: Vendr List Software Vendors
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: vendr-catalog-vendors.listvendors
+      with:
+        category: tools.category
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
