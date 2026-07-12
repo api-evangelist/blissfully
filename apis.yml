@@ -80,6 +80,12 @@ apis:
     - type: Documentation
       url: https://developers.vendr.com
 common:
+  - type: TrustCenter
+    url: security/blissfully-trust-center.yml
+  - type: DomainSecurity
+    url: security/blissfully-domain-security.yml
+  - type: Authentication
+    url: authentication/blissfully-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/Blissfully
   - type: LinkedIn

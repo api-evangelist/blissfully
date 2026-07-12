@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/blissfully-vendr-catalog-api-openapi.yaml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  parameter: X-API-Key
+  description: API key for authentication. Contact Vendr support to obtain API access. Rate
+    limited to 250 requests per minute and 150,000 per day.
+  sources:
+  - openapi/blissfully-vendr-catalog-api-openapi.yaml
