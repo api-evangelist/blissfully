@@ -80,6 +80,8 @@ apis:
     - type: Documentation
       url: https://developers.vendr.com
 common:
+  - type: AgenticAccess
+    url: agentic-access/blissfully-agentic-access.yml
   - type: TrustCenter
     url: security/blissfully-trust-center.yml
   - type: DomainSecurity
