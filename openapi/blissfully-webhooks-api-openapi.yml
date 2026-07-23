@@ -1,0 +1,158 @@
+openapi: 3.0.3
+info:
+  title: Vendr Catalog Pricing Webhooks API
+  description: Provides structured product catalog attributes derived from thousands of unstructured software quotes. Enables buyers to understand product breadth, available add-ons, pricing tiers, and feature comparisons across the Vendr software catalog. Formerly Blissfully, now part of Vendr's SaaS buying and management platform.
+  version: '1.0'
+  contact:
+    name: Vendr API Support
+    url: https://developers.vendr.com
+  x-generated-from: documentation
+servers:
+- url: https://api.vendr.com/v1
+  description: Production Server
+security:
+- apiKeyAuth: []
+tags:
+- name: Webhooks
+  description: Webhook management for event notifications
+paths:
+  /webhooks:
+    get:
+      operationId: listWebhooks
+      summary: Vendr List Webhooks
+      description: List all configured webhooks for the authenticated account.
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: List of configured webhooks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookListResponse'
+              examples:
+                ListWebhooks200Example:
+                  summary: Default listWebhooks 200 response
+                  x-microcks-default: true
+                  value:
+                    webhooks:
+                    - id: webhook-500123
+                      url: https://example.com/webhook
+                      events:
+                      - pricing.updated
+                      active: true
+        '401':
+          description: Unauthorized
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createWebhook
+      summary: Vendr Create Webhook
+      description: Create a new webhook to receive event notifications from Vendr's data processing pipeline.
+      tags:
+      - Webhooks
+      requestBody:
+        required: true
+        description: Webhook configuration
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+            examples:
+              CreateWebhookRequestExample:
+                summary: Default createWebhook request
+                x-microcks-default: true
+                value:
+                  url: https://example.com/webhook
+                  events:
+                  - pricing.updated
+                  - catalog.updated
+                  secret: webhook-secret-abc123
+      responses:
+        '201':
+          description: Webhook created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+              examples:
+                CreateWebhook201Example:
+                  summary: Default createWebhook 201 response
+                  x-microcks-default: true
+                  value:
+                    id: webhook-500123
+                    url: https://example.com/webhook
+                    events:
+                    - pricing.updated
+                    active: true
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    WebhookRequest:
+      type: object
+      description: Webhook creation request
+      required:
+      - url
+      - events
+      properties:
+        url:
+          type: string
+          format: uri
+          description: HTTPS endpoint to receive webhook events
+          example: https://example.com/webhook
+        events:
+          type: array
+          description: List of events to subscribe to
+          items:
+            type: string
+          example:
+          - pricing.updated
+          - catalog.updated
+        secret:
+          type: string
+          description: Optional signing secret for webhook payload verification
+          example: webhook-secret-abc123
+    Webhook:
+      type: object
+      description: A configured webhook
+      properties:
+        id:
+          type: string
+          description: Unique webhook identifier
+          example: webhook-500123
+        url:
+          type: string
+          format: uri
+          description: Webhook endpoint URL
+          example: https://example.com/webhook
+        events:
+          type: array
+          description: Subscribed event types
+          items:
+            type: string
+        active:
+          type: boolean
+          description: Whether the webhook is currently active
+          example: true
+    WebhookListResponse:
+      type: object
+      description: List of configured webhooks
+      properties:
+        webhooks:
+          type: array
+          description: List of webhooks
+          items:
+            $ref: '#/components/schemas/Webhook'
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authentication. Contact Vendr support to obtain API access. Rate limited to 250 requests per minute and 150,000 per day.

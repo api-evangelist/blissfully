@@ -1,0 +1,111 @@
+openapi: 3.0.3
+info:
+  title: Vendr Catalog Pricing Vendors API
+  description: Provides structured product catalog attributes derived from thousands of unstructured software quotes. Enables buyers to understand product breadth, available add-ons, pricing tiers, and feature comparisons across the Vendr software catalog. Formerly Blissfully, now part of Vendr's SaaS buying and management platform.
+  version: '1.0'
+  contact:
+    name: Vendr API Support
+    url: https://developers.vendr.com
+  x-generated-from: documentation
+servers:
+- url: https://api.vendr.com/v1
+  description: Production Server
+security:
+- apiKeyAuth: []
+tags:
+- name: Vendors
+  description: Software vendors and their product portfolios
+paths:
+  /vendors:
+    get:
+      operationId: listVendors
+      summary: Vendr List Software Vendors
+      description: List software vendors in the Vendr catalog with their product portfolios and vendor profile information.
+      tags:
+      - Vendors
+      parameters:
+      - name: category
+        in: query
+        description: Filter vendors by category
+        schema:
+          type: string
+        example: CRM
+      - name: limit
+        in: query
+        description: Maximum number of results
+        schema:
+          type: integer
+        example: 20
+      - name: offset
+        in: query
+        description: Offset for pagination
+        schema:
+          type: integer
+        example: 0
+      responses:
+        '200':
+          description: List of vendors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorListResponse'
+              examples:
+                ListVendors200Example:
+                  summary: Default listVendors 200 response
+                  x-microcks-default: true
+                  value:
+                    vendors:
+                    - id: vendor-salesforce
+                      name: Salesforce
+                      website: https://www.salesforce.com
+                      category: CRM
+                    total: 1
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limit exceeded
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Vendor:
+      type: object
+      description: A software vendor in the Vendr catalog
+      properties:
+        id:
+          type: string
+          description: Unique vendor identifier
+          example: vendor-salesforce
+        name:
+          type: string
+          description: Vendor name
+          example: Salesforce
+        website:
+          type: string
+          format: uri
+          description: Vendor website URL
+          example: https://www.salesforce.com
+        category:
+          type: string
+          description: Primary product category
+          example: CRM
+    VendorListResponse:
+      type: object
+      description: Paginated list of vendors
+      properties:
+        vendors:
+          type: array
+          description: List of vendors
+          items:
+            $ref: '#/components/schemas/Vendor'
+        total:
+          type: integer
+          description: Total number of vendors
+          example: 5000
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authentication. Contact Vendr support to obtain API access. Rate limited to 250 requests per minute and 150,000 per day.

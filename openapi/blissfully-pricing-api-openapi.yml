@@ -1,0 +1,130 @@
+openapi: 3.0.3
+info:
+  title: Vendr Catalog Pricing API
+  description: Provides structured product catalog attributes derived from thousands of unstructured software quotes. Enables buyers to understand product breadth, available add-ons, pricing tiers, and feature comparisons across the Vendr software catalog. Formerly Blissfully, now part of Vendr's SaaS buying and management platform.
+  version: '1.0'
+  contact:
+    name: Vendr API Support
+    url: https://developers.vendr.com
+  x-generated-from: documentation
+servers:
+- url: https://api.vendr.com/v1
+  description: Production Server
+security:
+- apiKeyAuth: []
+tags:
+- name: Pricing
+  description: Pricing intelligence and benchmarks
+paths:
+  /pricing:
+    post:
+      operationId: getPricingInsights
+      summary: Vendr Get Pricing Insights
+      description: Retrieve actionable pricing insights including fair price predictions and negotiation guidance tailored to the buyer's specific requirements, contract size, and company profile. Powered by Vendr's database of real software purchases.
+      tags:
+      - Pricing
+      requestBody:
+        required: true
+        description: Pricing insight request with product and buyer context
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PricingRequest'
+            examples:
+              GetPricingInsightsRequestExample:
+                summary: Default getPricingInsights request
+                x-microcks-default: true
+                value:
+                  product_id: product-500123
+                  seats: 100
+                  contract_length_months: 12
+                  company_size: mid-market
+      responses:
+        '200':
+          description: Pricing insights and benchmarks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PricingResponse'
+              examples:
+                GetPricingInsights200Example:
+                  summary: Default getPricingInsights 200 response
+                  x-microcks-default: true
+                  value:
+                    product_id: product-500123
+                    fair_price_per_seat: 150
+                    currency: USD
+                    confidence: high
+                    negotiation_guidance: Consider asking for a 15-20% discount given your company size and multi-year commitment.
+        '400':
+          description: Bad request - invalid parameters
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limit exceeded
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    PricingResponse:
+      type: object
+      description: Pricing insights and negotiation guidance
+      properties:
+        product_id:
+          type: string
+          description: Product identifier
+          example: product-500123
+        fair_price_per_seat:
+          type: number
+          description: Fair market price per seat in USD
+          example: 150
+        currency:
+          type: string
+          description: Currency code
+          example: USD
+        confidence:
+          type: string
+          description: Confidence level of the pricing prediction
+          enum:
+          - high
+          - medium
+          - low
+          example: high
+        negotiation_guidance:
+          type: string
+          description: Specific negotiation tips and strategy
+          example: Consider asking for a 15-20% discount given your company size.
+    PricingRequest:
+      type: object
+      description: Request for pricing insights
+      required:
+      - product_id
+      properties:
+        product_id:
+          type: string
+          description: Product identifier to get pricing for
+          example: product-500123
+        seats:
+          type: integer
+          description: Number of seats or licenses
+          example: 100
+        contract_length_months:
+          type: integer
+          description: Contract length in months
+          example: 12
+        company_size:
+          type: string
+          description: Buyer company size segment
+          enum:
+          - startup
+          - smb
+          - mid-market
+          - enterprise
+          example: mid-market
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authentication. Contact Vendr support to obtain API access. Rate limited to 250 requests per minute and 150,000 per day.
