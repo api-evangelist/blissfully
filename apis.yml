@@ -6,7 +6,20 @@ description: Blissfully was a SaaS management platform providing SaaS discovery,
   intelligence, and procurement automation. The Vendr API provides access to software catalog data, pricing intelligence,
   and scope management capabilities.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/blissfully.png
 tags:
   - Procurement
   - SaaS Discovery
@@ -19,66 +32,123 @@ created: '2026-03-27'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: blissfully:vendr-catalog-api
-    name: Vendr Catalog API
-    description: Provides structured product catalog attributes derived from thousands of unstructured software quotes. Enables
-      buyers to understand product breadth, available add-ons, pricing tiers, and feature comparisons across the Vendr software
-      catalog.
-    humanURL: https://developers.vendr.com
-    tags:
-    - Procurement
-    - SaaS Management
-    - Software Catalog
-    properties:
-    - type: Documentation
-      url: https://developers.vendr.com
-    - type: OpenAPI
-      url: openapi/blissfully-vendr-catalog-api-openapi.yaml
-    - type: X-NaftikoCapability
-      url: capabilities/vendr-catalog-pricing.yaml
-    - type: X-NaftikoCapability
-      url: capabilities/vendr-catalog-products.yaml
-    - type: X-NaftikoCapability
-      url: capabilities/vendr-catalog-vendors.yaml
-    - type: X-NaftikoCapability
-      url: capabilities/vendr-catalog-webhooks.yaml
-  - aid: blissfully:vendr-pricing-api
-    name: Vendr Pricing API
-    description: Delivers actionable pricing insights including fair price predictions and negotiation guidance tailored to
-      the buyer's specific requirements, contract size, and vendor relationship. Powered by Vendr's database of real software
-      purchases and negotiated prices.
-    humanURL: https://developers.vendr.com
-    tags:
-    - Pricing
-    - Procurement
-    - SaaS Management
-    properties:
-    - type: Documentation
-      url: https://developers.vendr.com
-  - aid: blissfully:vendr-scope-api
-    name: Vendr Scope API
-    description: Enables communication of detailed purchasing needs in text or file format, whether for complex enterprise software
-      requirements or uploaded quotes from vendors. Supports both simple and complex procurement scope definitions.
-    humanURL: https://developers.vendr.com
-    tags:
-    - Procurement
-    - SaaS Management
-    - Scope
-    properties:
-    - type: Documentation
-      url: https://developers.vendr.com
-  - aid: blissfully:vendr-webhooks-api
-    name: Vendr Webhooks API
-    description: Facilitates creation and management of webhooks for monitoring Vendr's data processing events, enabling integration
-      with procurement workflows and notification systems.
-    humanURL: https://developers.vendr.com
-    tags:
-    - Procurement
-    - SaaS Management
-    - Webhooks
-    properties:
-    - type: Documentation
-      url: https://developers.vendr.com
+- aid: blissfully:vendr-pricing-api
+  name: Vendr Pricing API
+  description: >-
+    Delivers actionable pricing insights including fair price predictions and negotiation guidance tailored
+    to the buyer's specific requirements, contract size, and vendor relationship. Powered by Vendr's database
+    of real software purchases and negotiated prices.
+  humanURL: https://developers.vendr.com
+  tags:
+  - Pricing
+  - Procurement
+  - SaaS Management
+  properties:
+  - type: Documentation
+    url: https://developers.vendr.com
+- aid: blissfully:vendr-scope-api
+  name: Vendr Scope API
+  description: >-
+    Enables communication of detailed purchasing needs in text or file format, whether for complex enterprise
+    software requirements or uploaded quotes from vendors. Supports both simple and complex procurement
+    scope definitions.
+  humanURL: https://developers.vendr.com
+  tags:
+  - Procurement
+  - SaaS Management
+  - Scope
+  properties:
+  - type: Documentation
+    url: https://developers.vendr.com
+- aid: blissfully:vendr-webhooks-api
+  name: Vendr Webhooks API
+  description: >-
+    Facilitates creation and management of webhooks for monitoring Vendr's data processing events, enabling
+    integration with procurement workflows and notification systems.
+  humanURL: https://developers.vendr.com
+  tags:
+  - Procurement
+  - SaaS Management
+  - Webhooks
+  properties:
+  - type: Documentation
+    url: https://developers.vendr.com
+- aid: blissfully:blissfully-pricing-api
+  name: Blissfully Pricing API
+  description: Pricing intelligence and benchmarks
+  humanURL: https://developers.vendr.com
+  tags:
+  - Pricing
+  properties:
+  - type: OpenAPI
+    url: openapi/blissfully-pricing-api-openapi.yml
+  - type: Documentation
+    url: https://developers.vendr.com
+  - type: X-NaftikoCapability
+    url: capabilities/vendr-catalog-pricing.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/vendr-catalog-products.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/vendr-catalog-vendors.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/vendr-catalog-webhooks.yaml
+- aid: blissfully:blissfully-products-api
+  name: Blissfully Products API
+  description: Software product catalog entries
+  humanURL: https://developers.vendr.com
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/blissfully-products-api-openapi.yml
+  - type: Documentation
+    url: https://developers.vendr.com
+  - type: X-NaftikoCapability
+    url: capabilities/vendr-catalog-pricing.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/vendr-catalog-products.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/vendr-catalog-vendors.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/vendr-catalog-webhooks.yaml
+- aid: blissfully:blissfully-vendors-api
+  name: Blissfully Vendors API
+  description: Software vendors and their product portfolios
+  humanURL: https://developers.vendr.com
+  tags:
+  - Vendors
+  properties:
+  - type: OpenAPI
+    url: openapi/blissfully-vendors-api-openapi.yml
+  - type: Documentation
+    url: https://developers.vendr.com
+  - type: X-NaftikoCapability
+    url: capabilities/vendr-catalog-pricing.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/vendr-catalog-products.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/vendr-catalog-vendors.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/vendr-catalog-webhooks.yaml
+- aid: blissfully:blissfully-webhooks-api
+  name: Blissfully Webhooks API
+  description: Webhook management for event notifications
+  humanURL: https://developers.vendr.com
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/blissfully-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://developers.vendr.com
+  - type: X-NaftikoCapability
+    url: capabilities/vendr-catalog-pricing.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/vendr-catalog-products.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/vendr-catalog-vendors.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/vendr-catalog-webhooks.yaml
 common:
   - type: AgenticAccess
     url: agentic-access/blissfully-agentic-access.yml
