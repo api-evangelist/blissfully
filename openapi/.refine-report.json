@@ -1,0 +1,20 @@
+{
+  "provider": "blissfully",
+  "sources": [
+    "blissfully-pricing-api-openapi.yml",
+    "blissfully-products-api-openapi.yml",
+    "blissfully-vendors-api-openapi.yml",
+    "blissfully-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "blissfully-pricing-api-openapi.yml",
+    "blissfully-products-api-openapi.yml",
+    "blissfully-vendors-api-openapi.yml",
+    "blissfully-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
