@@ -84,14 +84,6 @@ apis:
     url: openapi/blissfully-pricing-api-openapi.yml
   - type: Documentation
     url: https://developers.vendr.com
-  - type: X-NaftikoCapability
-    url: capabilities/vendr-catalog-pricing.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/vendr-catalog-products.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/vendr-catalog-vendors.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/vendr-catalog-webhooks.yaml
 - aid: blissfully:blissfully-products-api
   name: Blissfully Products API
   description: Software product catalog entries
@@ -103,14 +95,6 @@ apis:
     url: openapi/blissfully-products-api-openapi.yml
   - type: Documentation
     url: https://developers.vendr.com
-  - type: X-NaftikoCapability
-    url: capabilities/vendr-catalog-pricing.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/vendr-catalog-products.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/vendr-catalog-vendors.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/vendr-catalog-webhooks.yaml
 - aid: blissfully:blissfully-vendors-api
   name: Blissfully Vendors API
   description: Software vendors and their product portfolios
@@ -122,14 +106,6 @@ apis:
     url: openapi/blissfully-vendors-api-openapi.yml
   - type: Documentation
     url: https://developers.vendr.com
-  - type: X-NaftikoCapability
-    url: capabilities/vendr-catalog-pricing.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/vendr-catalog-products.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/vendr-catalog-vendors.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/vendr-catalog-webhooks.yaml
 - aid: blissfully:blissfully-webhooks-api
   name: Blissfully Webhooks API
   description: Webhook management for event notifications
@@ -141,14 +117,6 @@ apis:
     url: openapi/blissfully-webhooks-api-openapi.yml
   - type: Documentation
     url: https://developers.vendr.com
-  - type: X-NaftikoCapability
-    url: capabilities/vendr-catalog-pricing.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/vendr-catalog-products.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/vendr-catalog-vendors.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/vendr-catalog-webhooks.yaml
 common:
   - type: AgenticAccess
     url: agentic-access/blissfully-agentic-access.yml
