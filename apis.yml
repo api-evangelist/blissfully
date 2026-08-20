@@ -69,6 +69,10 @@ apis:
   tags:
   - Procurement
   - SaaS Management
+  - Webhook
+  tags_raw:
+  - Procurement
+  - SaaS Management
   - Webhooks
   properties:
   - type: Documentation
@@ -89,6 +93,8 @@ apis:
   description: Software product catalog entries
   humanURL: https://developers.vendr.com
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
@@ -111,6 +117,8 @@ apis:
   description: Webhook management for event notifications
   humanURL: https://developers.vendr.com
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
