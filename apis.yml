@@ -6,6 +6,18 @@ description: Blissfully was a SaaS management platform providing SaaS discovery,
   intelligence, and procurement automation. The Vendr API provides access to software catalog data, pricing intelligence,
   and scope management capabilities.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
