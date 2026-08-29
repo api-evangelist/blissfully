@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Vendr Catalog Pricing Webhooks API
   description: Provides structured product catalog attributes derived from thousands of unstructured software quotes. Enables buyers to understand product breadth, available add-ons, pricing tiers, and feature comparisons across the Vendr software catalog. Formerly Blissfully, now part of Vendr's SaaS buying and management platform.
@@ -95,6 +95,28 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Webhook:
+      type: object
+      description: A configured webhook
+      properties:
+        id:
+          type: string
+          description: Unique webhook identifier
+          example: webhook-500123
+        url:
+          type: string
+          format: uri
+          description: Webhook endpoint URL
+          example: https://example.com/webhook
+        events:
+          type: array
+          description: Subscribed event types
+          items:
+            type: string
+        active:
+          type: boolean
+          description: Whether the webhook is currently active
+          example: true
     WebhookRequest:
       type: object
       description: Webhook creation request
@@ -119,28 +141,6 @@ components:
           type: string
           description: Optional signing secret for webhook payload verification
           example: webhook-secret-abc123
-    Webhook:
-      type: object
-      description: A configured webhook
-      properties:
-        id:
-          type: string
-          description: Unique webhook identifier
-          example: webhook-500123
-        url:
-          type: string
-          format: uri
-          description: Webhook endpoint URL
-          example: https://example.com/webhook
-        events:
-          type: array
-          description: Subscribed event types
-          items:
-            type: string
-        active:
-          type: boolean
-          description: Whether the webhook is currently active
-          example: true
     WebhookListResponse:
       type: object
       description: List of configured webhooks
