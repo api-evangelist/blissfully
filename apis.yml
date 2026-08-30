@@ -138,6 +138,11 @@ apis:
   - type: Documentation
     url: https://developers.vendr.com
 common:
+  - type: ParentCompany
+    url: https://apis.io/providers/vendr/
+    name: Vendr
+    x-relationship: acquired
+    x-evidence: "Blissfully was acquired by Vendr in 2022 and integrated into the Vendr platform."
   - type: AgenticAccess
     url: agentic-access/blissfully-agentic-access.yml
   - type: TrustCenter
