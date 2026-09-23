@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Vendr Catalog Pricing Vendors API
+  title: Vendr Catalog Vendors API
   description: Provides structured product catalog attributes derived from thousands of unstructured software quotes. Enables buyers to understand product breadth, available add-ons, pricing tiers, and feature comparisons across the Vendr software catalog. Formerly Blissfully, now part of Vendr's SaaS buying and management platform.
   version: '1.0'
   contact:
@@ -69,6 +69,19 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    VendorListResponse:
+      type: object
+      description: Paginated list of vendors
+      properties:
+        vendors:
+          type: array
+          description: List of vendors
+          items:
+            $ref: '#/components/schemas/Vendor'
+        total:
+          type: integer
+          description: Total number of vendors
+          example: 5000
     Vendor:
       type: object
       description: A software vendor in the Vendr catalog
@@ -90,19 +103,6 @@ components:
           type: string
           description: Primary product category
           example: CRM
-    VendorListResponse:
-      type: object
-      description: Paginated list of vendors
-      properties:
-        vendors:
-          type: array
-          description: List of vendors
-          items:
-            $ref: '#/components/schemas/Vendor'
-        total:
-          type: integer
-          description: Total number of vendors
-          example: 5000
   securitySchemes:
     apiKeyAuth:
       type: apiKey

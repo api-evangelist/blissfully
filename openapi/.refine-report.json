@@ -1,10 +1,7 @@
 {
   "provider": "blissfully",
   "sources": [
-    "blissfully-pricing-api-openapi.yml",
-    "blissfully-products-api-openapi.yml",
-    "blissfully-vendors-api-openapi.yml",
-    "blissfully-webhooks-api-openapi.yml"
+    "_ae-authored/blissfully-vendr-catalog-api-openapi.yaml"
   ],
   "outputs": [
     "blissfully-pricing-api-openapi.yml",
@@ -16,11 +13,14 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "blissfully-pricing-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "blissfully-products-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "blissfully-vendors-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "blissfully-webhooks-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "blissfully-vendr-catalog-api-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "blissfully-pricing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "blissfully-products-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "blissfully-vendors-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "blissfully-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
