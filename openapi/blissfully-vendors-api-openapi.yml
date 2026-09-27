@@ -69,19 +69,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    VendorListResponse:
-      type: object
-      description: Paginated list of vendors
-      properties:
-        vendors:
-          type: array
-          description: List of vendors
-          items:
-            $ref: '#/components/schemas/Vendor'
-        total:
-          type: integer
-          description: Total number of vendors
-          example: 5000
     Vendor:
       type: object
       description: A software vendor in the Vendr catalog
@@ -103,6 +90,19 @@ components:
           type: string
           description: Primary product category
           example: CRM
+    VendorListResponse:
+      type: object
+      description: Paginated list of vendors
+      properties:
+        vendors:
+          type: array
+          description: List of vendors
+          items:
+            $ref: '#/components/schemas/Vendor'
+        total:
+          type: integer
+          description: Total number of vendors
+          example: 5000
   securitySchemes:
     apiKeyAuth:
       type: apiKey
