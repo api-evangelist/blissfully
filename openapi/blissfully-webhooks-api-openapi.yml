@@ -117,15 +117,6 @@ components:
           type: boolean
           description: Whether the webhook is currently active
           example: true
-    WebhookListResponse:
-      type: object
-      description: List of configured webhooks
-      properties:
-        webhooks:
-          type: array
-          description: List of webhooks
-          items:
-            $ref: '#/components/schemas/Webhook'
     WebhookRequest:
       type: object
       description: Webhook creation request
@@ -150,6 +141,15 @@ components:
           type: string
           description: Optional signing secret for webhook payload verification
           example: webhook-secret-abc123
+    WebhookListResponse:
+      type: object
+      description: List of configured webhooks
+      properties:
+        webhooks:
+          type: array
+          description: List of webhooks
+          items:
+            $ref: '#/components/schemas/Webhook'
   securitySchemes:
     apiKeyAuth:
       type: apiKey
