@@ -67,6 +67,33 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    PricingRequest:
+      type: object
+      description: Request for pricing insights
+      required:
+      - product_id
+      properties:
+        product_id:
+          type: string
+          description: Product identifier to get pricing for
+          example: product-500123
+        seats:
+          type: integer
+          description: Number of seats or licenses
+          example: 100
+        contract_length_months:
+          type: integer
+          description: Contract length in months
+          example: 12
+        company_size:
+          type: string
+          description: Buyer company size segment
+          enum:
+          - startup
+          - smb
+          - mid-market
+          - enterprise
+          example: mid-market
     PricingResponse:
       type: object
       description: Pricing insights and negotiation guidance
@@ -95,33 +122,6 @@ components:
           type: string
           description: Specific negotiation tips and strategy
           example: Consider asking for a 15-20% discount given your company size.
-    PricingRequest:
-      type: object
-      description: Request for pricing insights
-      required:
-      - product_id
-      properties:
-        product_id:
-          type: string
-          description: Product identifier to get pricing for
-          example: product-500123
-        seats:
-          type: integer
-          description: Number of seats or licenses
-          example: 100
-        contract_length_months:
-          type: integer
-          description: Contract length in months
-          example: 12
-        company_size:
-          type: string
-          description: Buyer company size segment
-          enum:
-          - startup
-          - smb
-          - mid-market
-          - enterprise
-          example: mid-market
   securitySchemes:
     apiKeyAuth:
       type: apiKey

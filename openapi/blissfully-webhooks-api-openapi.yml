@@ -95,28 +95,15 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Webhook:
+    WebhookListResponse:
       type: object
-      description: A configured webhook
+      description: List of configured webhooks
       properties:
-        id:
-          type: string
-          description: Unique webhook identifier
-          example: webhook-500123
-        url:
-          type: string
-          format: uri
-          description: Webhook endpoint URL
-          example: https://example.com/webhook
-        events:
+        webhooks:
           type: array
-          description: Subscribed event types
+          description: List of webhooks
           items:
-            type: string
-        active:
-          type: boolean
-          description: Whether the webhook is currently active
-          example: true
+            $ref: '#/components/schemas/Webhook'
     WebhookRequest:
       type: object
       description: Webhook creation request
@@ -141,15 +128,28 @@ components:
           type: string
           description: Optional signing secret for webhook payload verification
           example: webhook-secret-abc123
-    WebhookListResponse:
+    Webhook:
       type: object
-      description: List of configured webhooks
+      description: A configured webhook
       properties:
-        webhooks:
+        id:
+          type: string
+          description: Unique webhook identifier
+          example: webhook-500123
+        url:
+          type: string
+          format: uri
+          description: Webhook endpoint URL
+          example: https://example.com/webhook
+        events:
           type: array
-          description: List of webhooks
+          description: Subscribed event types
           items:
-            $ref: '#/components/schemas/Webhook'
+            type: string
+        active:
+          type: boolean
+          description: Whether the webhook is currently active
+          example: true
   securitySchemes:
     apiKeyAuth:
       type: apiKey
