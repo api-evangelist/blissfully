@@ -142,6 +142,10 @@ apis:
   - type: Documentation
     url: https://developers.vendr.com
 common:
+  - type: Plans
+    url: plans/blissfully-plans-pricing.yml
+  - type: FinOps
+    url: finops/blissfully-finops.yml
   - type: ParentCompany
     url: https://apis.io/providers/vendr/
     name: Vendr
