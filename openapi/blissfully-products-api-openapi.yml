@@ -124,6 +124,27 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ProductListResponse:
+      type: object
+      description: Paginated list of software products
+      properties:
+        products:
+          type: array
+          description: List of products
+          items:
+            $ref: '#/components/schemas/Product'
+        total:
+          type: integer
+          description: Total number of matching products
+          example: 250
+        limit:
+          type: integer
+          description: Maximum results per page
+          example: 20
+        offset:
+          type: integer
+          description: Current page offset
+          example: 0
     Product:
       type: object
       description: A software product in the Vendr catalog
@@ -161,27 +182,6 @@ components:
           description: Available product add-ons
           items:
             type: string
-    ProductListResponse:
-      type: object
-      description: Paginated list of software products
-      properties:
-        products:
-          type: array
-          description: List of products
-          items:
-            $ref: '#/components/schemas/Product'
-        total:
-          type: integer
-          description: Total number of matching products
-          example: 250
-        limit:
-          type: integer
-          description: Maximum results per page
-          example: 20
-        offset:
-          type: integer
-          description: Current page offset
-          example: 0
   securitySchemes:
     apiKeyAuth:
       type: apiKey
