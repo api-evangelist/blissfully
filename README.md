@@ -1,4 +1,4 @@
-# Blissfully (blissfully)
+# Blissfully
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,174 +66,173 @@
 
 Blissfully was a SaaS management platform providing SaaS discovery, spend optimization, and workflow automation for IT and finance teams. Blissfully was acquired by Vendr in 2022 and integrated into the Vendr platform. Vendr is now a leading SaaS buying and management platform that helps companies control software spend through vendor negotiations, pricing intelligence, and procurement automation. The Vendr API provides access to software catalog data, pricing intelligence, and scope management capabilities.
 
-**URL:** [https://www.vendr.com](https://www.vendr.com)
+**Areas:** Procurement · SaaS Discovery · SaaS Management · Software Procurement · Spend Optimization · Vendor Management
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Blissfully on APIs.io
 
-## Tags:
+Everything profiled for Blissfully is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/blissfully/](https://apis.io/providers/blissfully/)** — or go straight to one of the APIs or properties below.
 
- - Procurement, SaaS Discovery, SaaS Management, Software Procurement, Spend Optimization, Vendor Management
+### APIs (7)
 
-## Timestamps
+- [Vendr Pricing API](https://apis.io/apis/blissfully/vendr-pricing-api/) — Delivers actionable pricing insights including fair price predictions and negotiation guidance tailored to the buyer's specific requirements, contract size,…
+- [Vendr Scope API](https://apis.io/apis/blissfully/vendr-scope-api/) — Enables communication of detailed purchasing needs in text or file format, whether for complex enterprise software requirements or uploaded quotes from…
+- [Vendr Webhooks API](https://apis.io/apis/blissfully/vendr-webhooks-api/) — Facilitates creation and management of webhooks for monitoring Vendr's data processing events, enabling integration with procurement workflows and…
+- [Blissfully Pricing API](https://apis.io/apis/blissfully/blissfully-pricing-api/) — Pricing intelligence and benchmarks
+- [Blissfully Products API](https://apis.io/apis/blissfully/blissfully-products-api/) — Software product catalog entries
+- [Blissfully Vendors API](https://apis.io/apis/blissfully/blissfully-vendors-api/) — Software vendors and their product portfolios
+- [Blissfully Webhooks API](https://apis.io/apis/blissfully/blissfully-webhooks-api/) — Webhook management for event notifications
 
-- **Created:** 2026-03-27
-- **Modified:** 2026-04-19
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Vendr Catalog API
-Provides structured product catalog attributes derived from thousands of unstructured software quotes. Enables buyers to understand product breadth, available add-ons, pricing tiers, and feature comparisons across the Vendr software catalog.
+#### Agentic access (1)
 
-**Human URL:** [https://developers.vendr.com](https://developers.vendr.com)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags:
+- [Blissfully Agentic Access](https://apis.io/agentic-access/blissfully/blissfully-agentic-access/)
 
- - Procurement, SaaS Management, Software Catalog
+#### JSON Schema (4)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://developers.vendr.com)
-- [OpenAPI](openapi/blissfully-vendr-catalog-api-openapi.yaml)
+- [PricingResponse](https://apis.io/schemas/blissfully/blissfully-pricing-response/)
+- [Product](https://apis.io/schemas/blissfully/blissfully-product/)
+- [Vendor](https://apis.io/schemas/blissfully/blissfully-vendor/)
+- [Webhook](https://apis.io/schemas/blissfully/blissfully-webhook/)
 
-### Vendr Pricing API
-Delivers actionable pricing insights including fair price predictions and negotiation guidance tailored to the buyer's specific requirements, contract size, and company profile.
+#### JSON Structure (4)
 
-**Human URL:** [https://developers.vendr.com](https://developers.vendr.com)
+Data models expressed in JSON Structure.
 
-#### Tags:
+- [Blissfully Pricing Response Structure](https://apis.io/json-structure/blissfully/blissfully-pricing-response-structure/)
+- [Blissfully Product Structure](https://apis.io/json-structure/blissfully/blissfully-product-structure/)
+- [Blissfully Vendor Structure](https://apis.io/json-structure/blissfully/blissfully-vendor-structure/)
+- [Blissfully Webhook Structure](https://apis.io/json-structure/blissfully/blissfully-webhook-structure/)
 
- - Pricing, Procurement, SaaS Management
+#### JSON-LD (1)
 
-#### Properties
+Linked-data contexts for the provider's vocabulary.
 
-- [Documentation](https://developers.vendr.com)
+- [Blissfully Context](https://apis.io/jsonld/blissfully/blissfully-context/)
 
-### Vendr Scope API
-Enables communication of detailed purchasing needs in text or file format, whether for complex enterprise software requirements or uploaded quotes from vendors.
+#### Vocabulary (1)
 
-**Human URL:** [https://developers.vendr.com](https://developers.vendr.com)
+The provider's domain terms, defined.
 
-#### Tags:
+- [Blissfully Vocabulary](https://apis.io/vocabularies/blissfully/blissfully-vocabulary/)
 
- - Procurement, SaaS Management, Scope
+#### Examples (4)
 
-#### Properties
+Example requests and responses.
 
-- [Documentation](https://developers.vendr.com)
+- [Blissfully Pricing Response Example](https://apis.io/examples/blissfully/blissfully-pricing-response-example/)
+- [Blissfully Product Example](https://apis.io/examples/blissfully/blissfully-product-example/)
+- [Blissfully Vendor Example](https://apis.io/examples/blissfully/blissfully-vendor-example/)
+- [Blissfully Webhook Example](https://apis.io/examples/blissfully/blissfully-webhook-example/)
 
-### Vendr Webhooks API
-Facilitates creation and management of webhooks for monitoring Vendr's data processing events, enabling integration with procurement workflows and notification systems.
+#### Collections (4)
 
-**Human URL:** [https://developers.vendr.com](https://developers.vendr.com)
+Postman and Open Collection request collections.
 
-#### Tags:
+- [Vendr Catalog Pricing API](https://apis.io/collections/blissfully/open-blissfully-pricing-api/)
+- [Vendr Catalog Pricing Products API](https://apis.io/collections/blissfully/open-blissfully-products-api/)
+- [Vendr Catalog Pricing Vendors API](https://apis.io/collections/blissfully/open-blissfully-vendors-api/)
+- [Vendr Catalog Pricing Webhooks API](https://apis.io/collections/blissfully/open-blissfully-webhooks-api/)
 
- - Procurement, SaaS Management, Webhooks
+#### Governance rules (2)
 
-#### Properties
+Spectral rulesets for the provider's contracts.
 
-- [Documentation](https://developers.vendr.com)
+- [Blissfully — jsonschema rules](https://apis.io/rules/blissfully/blissfully-jsonschema-spectral-rules/)
+- [Blissfully API Rules](https://apis.io/rules/blissfully/blissfully-spectral-rules/)
 
-## Common Properties
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Blissfully Authentication](https://apis.io/security/blissfully/blissfully-authentication/)
+- [Blissfully Domain Security](https://apis.io/security/blissfully/blissfully-domain-security/)
+- [Blissfully Trust Center](https://apis.io/security/blissfully/blissfully-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Blissfully Plans Pricing](https://apis.io/plans/blissfully/blissfully-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Blissfully Rate Limits](https://apis.io/rate-limits/blissfully/blissfully-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Blissfully Finops](https://apis.io/finops/blissfully/blissfully-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.vendr.com)
 - [Documentation](https://developers.vendr.com)
-- [Sign Up](https://www.vendr.com/demo)
-- [Terms of Service](https://www.vendr.com/legal/terms-of-service)
-- [Privacy Policy](https://www.vendr.com/legal/privacy-policy)
 - [Blog](https://www.vendr.com/blog)
-- [Authentication](https://developers.vendr.com)
-- [SpectralRules](rules/blissfully-spectral-rules.yml)
-- [NaftikoCapability](capabilities/blissfully-saas-procurement.yaml)
-- [Vocabulary](vocabulary/blissfully-vocabulary.yaml)
+- [Terms of service](https://www.vendr.com/legal/terms-of-service)
+- [Privacy policy](https://www.vendr.com/legal/privacy-policy)
+- [GitHub](https://github.com/Blissfully)
 
-## Features
+## API Evangelist rating
 
-| Name | Description |
-|------|-------------|
-| Catalog API | Structured product catalog attributes derived from thousands of unstructured software quotes, covering product breadth, add-ons, and feature comparisons. |
-| Pricing API | Actionable pricing insights including fair price predictions and negotiation guidance tailored to specific buyer requirements and contract sizes. |
-| Scope API | Communication of detailed purchasing needs in text or file format for complex enterprise software procurement requirements. |
-| Webhooks API | Creation and management of webhooks for monitoring Vendr data processing events and integrating with procurement workflows. |
-| MCP Integration | Model Context Protocol (MCP) integration options including Claude Desktop extension, GitHub-based local setup, and custom AI app configuration. |
-| SaaS Benchmarking | Pricing benchmarks powered by Vendr's database of real software purchases across thousands of companies and vendors. |
+**Kin Score 27.5** — thin · rubric 0.24.0 · scored 2026-10-17
 
-## Use Cases
+| Facet | Score |
+|---|---|
+| Discoverability | 62.5 |
+| Contract quality | 22.4 |
+| Contract governance | 13.6 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 36.8 |
 
-| Name | Description |
-|------|-------------|
-| Software Pricing Intelligence | Procurement teams access fair price benchmarks and negotiation guidance before and during software vendor negotiations. |
-| SaaS Spend Optimization | Finance and IT teams gain visibility into software spend and identify optimization opportunities across the SaaS portfolio. |
-| AI-Powered Procurement | AI applications integrate Vendr catalog and pricing data via MCP or API to provide intelligent software procurement recommendations. |
-| Vendor Management Integration | Enterprise procurement platforms integrate Vendr data to enrich vendor records with pricing benchmarks and product catalog attributes. |
-| Contract Renewal Automation | Webhook integrations notify procurement workflows of contract renewal events and pricing change signals from the Vendr platform. |
+**Agent readiness 24.8** — agent-aware
 
-## Integrations
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-| Name | Description |
-|------|-------------|
-| Claude Desktop | Native MCP extension for Claude Desktop enabling AI-assisted software procurement research directly in the Claude interface. |
-| Slack | Vendr integrates with Slack for procurement workflow notifications and team collaboration on software purchases. |
-| Salesforce | CRM integration enabling sales teams to access vendor and software catalog data within Salesforce. |
-| NetSuite | ERP integration for automated purchase order creation and financial tracking of SaaS spend through Vendr. |
+**Regulatory alignment 25.5** — Horizontal (data, software, accessibility, platform)
 
-## Artifacts
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/blissfully/](https://apis.io/providers/blissfully/).
 
-Machine-readable API specifications organized by format.
+## How this profile is made
 
-### OpenAPI
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-- [Vendr Catalog API](openapi/blissfully-vendr-catalog-api-openapi.yaml)
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Blissfully: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-### JSON Schema
+## Open an issue
 
-- [Product](json-schema/blissfully-product-schema.json)
-- [Vendor](json-schema/blissfully-vendor-schema.json)
-- [Pricing Response](json-schema/blissfully-pricing-response-schema.json)
-- [Webhook](json-schema/blissfully-webhook-schema.json)
-
-### JSON Structure
-
-- [Product](json-structure/blissfully-product-structure.json)
-- [Vendor](json-structure/blissfully-vendor-structure.json)
-- [Pricing Response](json-structure/blissfully-pricing-response-structure.json)
-- [Webhook](json-structure/blissfully-webhook-structure.json)
-
-### JSON-LD
-
-- [Blissfully Context](json-ld/blissfully-context.jsonld)
-
-### Examples
-
-- [Product Example](examples/blissfully-product-example.json)
-- [Vendor Example](examples/blissfully-vendor-example.json)
-- [Pricing Response Example](examples/blissfully-pricing-response-example.json)
-- [Webhook Example](examples/blissfully-webhook-example.json)
-
-## Capabilities
-
-Naftiko capabilities organized as shared per-API definitions composed into customer-facing workflows.
-
-### Shared Per-API Definitions
-
-- [Vendr Catalog API](capabilities/shared/vendr-catalog-api.yaml) — 5 operations for product catalog, vendor data, pricing intelligence, and webhook management
-
-### Workflow Capabilities
-
-| Workflow | APIs Combined | Tools | Persona |
-|----------|--------------|-------|---------|
-| [Blissfully SaaS Procurement](capabilities/blissfully-saas-procurement.yaml) | Vendr Catalog API, Vendr Pricing API | 5 | Procurement Managers, IT Managers, Finance Analysts, AI Assistants |
-
-## Vocabulary
-
-- [Blissfully Vocabulary](vocabulary/blissfully-vocabulary.yaml) — Unified taxonomy mapping 4 resources, 4 actions, 1 workflow, and 4 personas across operational (OpenAPI) and capability (Naftiko) dimensions
-
-## Rules
-
-- [Blissfully Spectral Rules](rules/blissfully-spectral-rules.yml) — 28 rules across 11 categories enforcing Vendr API conventions
-
-## Maintainers
-
-**FN:** Kin Lane
-
-**Email:** kin@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/blissfully/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
